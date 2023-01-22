@@ -38,8 +38,8 @@ const app = () => {
     const nextGrid = [...grid.map(row => [...row])]
     nextGrid[r]![c]! = currentPlayer
     setGrid(nextGrid)
-    setCurrentPlayer(togglePlayer(currentPlayer))
     updateStateOfPlay(r, c)
+    setCurrentPlayer(togglePlayer(currentPlayer))
   }
 
   const updateStateOfPlay = (r: number, c: number) => {
@@ -47,15 +47,15 @@ const app = () => {
     const col: `c${number}` = `c${c}`
     const nextRowCount = stateOfPlay[row]![currentPlayer] + 1
     const nextColCount = stateOfPlay[col]![currentPlayer] + 1
-    let antiDiagCount = stateOfPlay['d0']![currentPlayer]
-    let diagCount = stateOfPlay['d1']![currentPlayer]
+    let nextAntiDiagCount = stateOfPlay['d0']![currentPlayer]
+    let nextDiagCount = stateOfPlay['d1']![currentPlayer]
     if (r + c === 2) {
-      ++antiDiagCount
+      ++nextAntiDiagCount
     }
     if (r === c) {
-      ++diagCount
+      ++nextDiagCount
     }
-    if (nextRowCount === 3 || nextColCount === 3 || diagCount === 3 || antiDiagCount === 3) {
+    if (nextRowCount === 3 || nextColCount === 3 || nextDiagCount === 3 || nextAntiDiagCount === 3) {
       setWinner(currentPlayer)
     }
     setStateOfPlay({
@@ -70,11 +70,11 @@ const app = () => {
       },
       [`d${0}`]: {
         ...stateOfPlay[`d${0}`],
-        [currentPlayer]: antiDiagCount
+        [currentPlayer]: nextAntiDiagCount
       },
       [`d${1}`]: {
         ...stateOfPlay[`d${1}`],
-        [currentPlayer]: diagCount
+        [currentPlayer]: nextDiagCount
       }
     })
   }
@@ -82,13 +82,13 @@ const app = () => {
 
   return (
     <div className="gridContainer">
-      <div className="playerWindow">{winner ? winner + " wins!" : currentPlayer + "'s turn"}</div>
+      <div className="playerWindow" data-testid="pw">{winner ? winner + " wins!" : currentPlayer + "'s turn"}</div>
       {grid.map((row, r) => {
         return <div key={`row${r}`} className='row'>{
           row.map((value, c) => {
             return <div
               key={`${r},${c}`}
-              className={`cell ${value || winner ? '' : 'clickable'}`}
+              className={`cell ${value || winner ? '' : 'clickable'}`} data-testid={`cell-${r},${c}`}
               onClick={() => {
                 //don't allow a click event if the cell is filled or if there is a winner
                 if (!value && !winner) {
@@ -99,7 +99,7 @@ const app = () => {
           })
         }</div>
       })}
-      <div className="button" onClick={() => { handleReset() }}>reset game</div>
+      <div className="button" data-testid="reset" onClick={() => { handleReset() }}>reset game</div>
     </div>
   )
 }

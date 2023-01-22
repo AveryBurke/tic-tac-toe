@@ -4,10 +4,10 @@ Classic tic-tac-toe in the browser. Built with React and Typescript.
 
 ## Dependencies
 
-You will need [yarn](https://asdfasdf.com) installed.
+You will need [yarn](https://yarnpkg.com/) installed.
 
-## How to play
+## Usage
 
-Type `yarn start` in the terminal to start the server. Go to http://localhost:1234/ in your browser to play.
+Start the app server with `yarn start`, then go to http://localhost:1234/ in your browser to play the game. A game always starts with player **O**.
 
-A game always starts with player **O**.
+Run tests with `yarn test`.
