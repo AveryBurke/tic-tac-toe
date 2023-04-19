@@ -30,6 +30,8 @@
   "scripts": {
     "start": "parcel",
     "build": "parcel build",
-    "test": "jest"
+    "test": "jest",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d dist"
   }
 }
