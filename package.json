@@ -33,5 +33,9 @@
     "test": "jest",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AveryBurke/tic-tac-toe.git"
   }
 }
