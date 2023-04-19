@@ -1,7 +1,6 @@
 {
   "name": "tic-tac-toe",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.20.12",
@@ -32,7 +31,7 @@
     "start": "parcel",
     "build": "parcel build",
     "test": "jest",
-    "predeploy": "rm -rf dist && parcel build src/index.html --public-url AveryBurke/tic-tac-toe",
+    "predeploy": "rm -rf dist && parcel build src/index.html --public-url https://averyburke.github.io/tic-tac-toe/",
     "deploy": "gh-pages -d dist"
   },
   "repository": {
